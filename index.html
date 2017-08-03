@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en-NZ">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Timerizer</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+  <div class="Clock">
+    <div class="Clock-text">Ready?</div>
+    <div class="Clock-time">0.00</div>
+  </div>
+  <div class="Settings">
+    <div id="workTimer" class="Timer">
+      <h2>Work</h2>
+      <div class="Timer-controls">
+        <input type="number" value="60" /><span class="Timer-seconds">seconds</span>
+      </div>
+      <button>Do Double</button>
+    </div>
+    <div id="restTimer" class="Timer">
+      <h2>Rest</h2>
+      <div class="Timer-controls">
+        <input type="number" value="45" /><span class="Timer-seconds">seconds</span>
+      </div>
+      <button>Do Double</button>
+    </div>
+  </div>
+  <script src="./timerizer.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,87 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  background: #fff;
+  color: #000;
+  font-size: 14pt;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@media all and (orientation: landscape) {
+  body {
+    flex-direction: row;
+  }
+}
+
+.Clock {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Clock .Clock-text {
+  font-size: 2rem;
+}
+
+.Clock .Clock-time {
+  font-size: 4rem;
+}
+
+.Settings {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.Timer {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.Timer h2 {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.Timer .Timer-controls {
+  padding: 1rem 0;
+}
+
+.Timer input,
+.Timer button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.Timer button {
+  padding: 0.2rem;
+}
+
+.Timer button[aria-pressed="true"] {
+  border: 1px solid #000;
+  text-decoration: underline;
+}
+
+.Timer input {
+  padding: 0 0.2rem;
+  width: 120px;
+}
+
+.Timer .Timer-seconds {
+  padding-left: 0.3rem;
+}
