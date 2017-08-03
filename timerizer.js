@@ -17,41 +17,17 @@ const restInput = document.querySelector("#restTimer input");
 const workButton = document.querySelector("#workTimer button");
 const restButton = document.querySelector("#restTimer button");
 
-workButton.addEventListener("click", () => {
-  setDoubleWork(!doDoubleWork);
-});
-
-function setDoubleWork(doDouble) {
-  doDoubleWork = doDouble;
-  workButton.setAttribute("aria-pressed", doDouble.toString());
-}
-
-restButton.addEventListener("click", () => {
-  setDoubleRest(!doDoubleRest);
-});
-
-function setDoubleRest(doDouble) {
+const setDoubleRest = doDouble => {
   doDoubleRest = doDouble;
   restButton.setAttribute("aria-pressed", doDouble.toString());
-}
+};
 
-clockButton.addEventListener("click", function() {
-  if (state === STOPPED_STATE) {
-    state = COUNTDOWN_STATE;
-    const secondsToGo = 5;
-    endTime = Date.now() + secondsToGo * 1000;
-    rafHandle = requestAnimationFrame(render);
-  } else {
-    state = STOPPED_STATE;
-    cancelAnimationFrame(rafHandle);
-    rafHandle = null;
-    endTime = null;
-    clockText.textContent = "Ready?";
-    clockTime.textContent = "0.00";
-  }
-});
+const setDoubleWork = doDouble => {
+  doDoubleWork = doDouble;
+  workButton.setAttribute("aria-pressed", doDouble.toString());
+};
 
-function render() {
+const render = () => {
   clockText.textContent = getTimerText(state);
   const ms = (endTime - Date.now()) / 1000;
   if (ms > 0) {
@@ -81,9 +57,9 @@ function render() {
     clockTime.textContent = "0.00";
   }
   rafHandle = requestAnimationFrame(render);
-}
+};
 
-function getTimerText(state) {
+const getTimerText = state => {
   switch (state) {
     case REST_STATE:
       return "Rest!";
@@ -94,4 +70,34 @@ function getTimerText(state) {
     case STOPPED_STATE:
       return "Ready?";
   }
-}
+};
+
+const run = () => {
+  workButton.addEventListener("click", () => {
+    setDoubleWork(!doDoubleWork);
+  });
+
+  restButton.addEventListener("click", () => {
+    setDoubleRest(!doDoubleRest);
+  });
+
+  clockButton.addEventListener("click", function() {
+    if (state === STOPPED_STATE) {
+      state = COUNTDOWN_STATE;
+      const secondsToGo = 5;
+      endTime = Date.now() + secondsToGo * 1000;
+      rafHandle = requestAnimationFrame(render);
+    } else {
+      state = STOPPED_STATE;
+      cancelAnimationFrame(rafHandle);
+      rafHandle = null;
+      endTime = null;
+      clockText.textContent = "Ready?";
+      clockTime.textContent = "0.00";
+    }
+  });
+};
+
+(function() {
+  run();
+})();
